@@ -1,5 +1,6 @@
 package com.bit.academy.controller;
 
+import com.bit.academy.model.BoardPaging;
 import com.bit.academy.model.BoardVO;
 import com.bit.academy.service.BoardService;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +21,7 @@ public class BoardController {
     private BoardService boardService;
 
 
-//    @RequestMapping(value = "/board/insert", method = RequestMethod.GET)
+    //    @RequestMapping(value = "/board/insert", method = RequestMethod.GET)
     @GetMapping("/board/insert")
     public String boardInsert(){
 
@@ -71,15 +72,13 @@ public class BoardController {
     }
 
     @GetMapping("/board/list")
-    public String boardList(Model model){
-        model.addAttribute("boardList", this.boardService.selectBoardList());
-
-        List<BoardVO> boardList = new ArrayList<>();
-
-        for(BoardVO boardVO:boardList){
-
-        }
-
+    public String boardList(Model model, @ModelAttribute BoardPaging boardPaging){
+        model.addAllAttributes(this.boardService.selectBoardList(boardPaging));
         return "board/list";
+    }
+
+    @GetMapping("/postcode")
+    public String posrtocde(){
+        return "postcode";
     }
 }

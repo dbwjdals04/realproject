@@ -1,6 +1,8 @@
+
 package com.bit.academy.service.impl;
 
 import com.bit.academy.mapper.BoardMapper;
+import com.bit.academy.model.BoardPaging;
 import com.bit.academy.model.BoardVO;
 import com.bit.academy.model.MemberVO;
 import com.bit.academy.service.BoardService;
@@ -8,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -32,7 +36,6 @@ public class BoardServiceImpl implements BoardService {
         /*
         // session을 통해 사용자 인증정보 조회
         MemberVO memberVO = (MemberVO)request.getSession().getAttribute("memberVO");
-
         // 해당 게시물 조회하여 등록된 사용자의 삭제 요청인지 비교
         BoardVO board = this.boardMapper.selectBoard(qna_no);
         if(board.getM_no() == memberVO.getM_no()){
@@ -50,7 +53,23 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public List<BoardVO> selectBoardList() {
-        return this.boardMapper.selectBoardList();
+    public Map<String,Object> selectBoardList(BoardPaging boardPaging) {
+
+        Map<String,Object> map = new HashMap<>();
+
+        /**
+         * 처음 진입한 경우 currentPage 등 초기화 해줍니다.
+         */
+        if(boardPaging.getCurrentPage()==0){
+            boardPaging.setCurrentPage(1); // 1page 부터 조회
+            boardPaging.setArticleCount(20); // 페이지당 게시물 갯수
+        }
+
+        boardPaging.setTotalCount(this.boardMapper.selectBoardListCount(boardPaging));
+
+        map.put("boardPaging", boardPaging);
+        map.put("boardList", this.boardMapper.selectBoardList(boardPaging));
+
+        return map;
     }
 }

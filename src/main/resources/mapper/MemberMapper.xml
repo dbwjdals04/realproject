@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bit.academy.mapper.MemberMapper">
+
+    <!-- Member Regist-->
+    <insert id = "regist"
+            parameterType="com.bit.academy.model.MemberVO"
+            useGeneratedKeys="true"
+            keyProperty="m_no">
+        <![CDATA[
+            INSERT INTO member(
+                m_name, m_id, m_password, m_phone, m_address, m_regdate, m_birth
+            )
+            VALUES (
+                #{m_name}, #{m_id}, password(#{m_password}),#{m_phone},#{m_address},now(),#{m_birth}
+            )
+        ]]>
+    </insert>
+     <!-- Member modification-->
+    <insert id ="updateMember" parameterType="com.bit.academy.model.MemberVO">
+        UPDATE member
+        SET
+            m_name = #{m_name},
+            m_id = #{m_id},
+            m_password = #{m_password},
+            m_phone = #{m_phone},
+            m_address = #{m_address},
+            m_birth = #{m_birth}
+        WHERE m_no = #{m_no}
+    </insert>
+    <!-- Member delete-->
+    <delete id = "deleteMember" parameterType="int">
+        DELETE FROM member where m_no = #{m_no}
+    </delete>
+
+    <!--Member select-->
+    <select id = "selectMember" parameterType="Integer" resultType="com.bit.academy.model.MemberVO" >
+    SELECT *
+    FROM member
+    WHERE m_no = #{m_no}
+    </select>
+
+    <!-- Member list -->
+    <select id = "selectMemberList" resultType="com.bit.academy.model.MemberVO">
+        SELECT
+            m_name, m_id, m_phone, m_address, m_birth
+        FROM member
+        ORDER BY m_no DESC
+    </select>
+
+    <!--Login-->
+
+    <select id="login" resultType="int">
+    SELECT
+        m_name, m_id, m_password
+    from  member
+    </select>
+
+
+
+
+
+</mapper>

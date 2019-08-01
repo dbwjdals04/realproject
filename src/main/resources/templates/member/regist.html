@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+</head>
+<body>
+<h1>회원가입</h1>
+
+<form name = "insertForm" id = "insertForm" method = "post" action = "/member/regist" style = "width:600px;">
+    <div><span>성명</span><input type = "text" name = "m_name" id ="m_name" value ="홍길동"/></div>
+    <div><span>아이디</span><input type="text" name ="m_id" id="m_id" value ="abcd1234"/></div>
+    <div><span>비밀번호</span><input type="password" name ="m_password" id="m_password"/></div>
+    <div><span>휴대폰</span><input type="text" name ="m_phone" id="m_phone" value ="01012345678"/></div>
+    <div><span>배송주소</span><input type="text" name ="m_address" id="m_address" value ="서울시 은평구 대조동 5-7"/></div>
+    <div><span>생년월일</span><input type="date" name ="m_birth" id="m_birth" value ="12-31-1994"/></div>
+</form>
+
+    <input type = "button" value = "회원가입" onclick="insert();"/>
+
+    <script type = "text/javascript">
+        var insert = function(){
+
+
+            if($.trim($('#m_password').val())==''){
+                alert('비밀번호를 입력해주세요');
+                return;
+            }
+            else{
+                alert("회원가입에 성공하셨습니다. 인테리아에 오신걸 환영합니다");
+            }
+            $('#insertForm')
+                .attr('action','/member/regist')
+                .submit();
+
+        };
+
+    </script>
+
+</body>
+</html>
