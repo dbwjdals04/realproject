@@ -1,10 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" dir = "ltr">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
 </head>
 <body>
+
+<form name = "loginForm" action="/member/login" class="login-form" id = loginForm method ="post" >
+    <h1>Login</h1>
+
+    <div class="txtb">
+        <input type="text" id = m_id name = m_id>
+        <span data-placeholder="Email"></span>
+    </div>
+    <div id = loginIdCheck></div>
+
+    <div class="txtb">
+        <input type="password" id="m_password" name = "m_password">
+        <span data-placeholder="Password"></span>
+    </div>
+    <div id =loginPasswordCheck></div>
+
+    <input type="button" class="logbtn" value="Login" onclick="login();"/>
+
+    <div class="bottom-text">
+        Don't have account? <a href="regist">Sign up</a>
+    </div>
+
+</form>
+
+<script type="text/javascript">
+    //css
+    $(".txtb input").on("focus",function(){
+        $(this).addClass("focus");
+    });
+
+    $(".txtb input").on("blur",function(){
+        if($(this).val() == "")
+            $(this).removeClass("focus");
+    });
+
+    var login = function(){
+        $('#loginForm')
+            .attr('action','/member/login')
+            .submit();
+
+
+    var user_id =  /*[[${member.m_id}]]*/;
+    };
+
+
+</script>
+
 
 </body>
 </html>
