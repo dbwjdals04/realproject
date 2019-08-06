@@ -39,7 +39,6 @@ public class BoardController {
         log.debug(boardVO.toString());
 
         boardVO = this.boardService.selectBoard(boardVO.getQna_no());
-
         model.addAttribute("board", boardVO);
 
         return "board/insert_after";

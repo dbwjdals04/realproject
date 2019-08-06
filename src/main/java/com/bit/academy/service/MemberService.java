@@ -3,6 +3,7 @@ package com.bit.academy.service;
 import com.bit.academy.model.MemberVO;
 
 import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.Member;
 import java.util.List;
 
 public interface MemberService {
@@ -40,10 +41,37 @@ public interface MemberService {
      */
     List<MemberVO> selectMemberList();
 
+
     /**
      * 로그인
-     * @param memberVO
+     * @return
      */
-    int login(MemberVO memberVO);
+
+
+    MemberVO login(MemberVO memberVO, HttpServletRequest request);
+
+    /**
+     * idFInd
+     * @return
+     */
+
+
+    MemberVO idFind(MemberVO memberVO, HttpServletRequest request);
+
+    /**
+     * pwFind
+     * @return
+     */
+
+
+    MemberVO pwFind(MemberVO memberVO);
+
+    /**
+     * pwFind
+     * @return
+     */
+
+
+    void logOut(HttpServletRequest request);
 
 }

@@ -5,16 +5,14 @@
     <title></title>
     <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
 
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
 </head>
 <body>
 
 <form name = "loginForm" action="/member/login" class="login-form" id = loginForm method ="post" >
     <h1>Login</h1>
-
     <div class="txtb">
-        <input type="text" id = m_id name = m_id>
+        <input type="text" id = "m_id" name = "m_id">
         <span data-placeholder="Email"></span>
     </div>
     <div id = loginIdCheck></div>
@@ -30,6 +28,11 @@
     <div class="bottom-text">
         Don't have account? <a href="regist">Sign up</a>
     </div>
+    <div class ="bottom-text">
+        <a href = "/member/idPwFind">아이디나 비밀번호를 잊어버리셨나요?</a>
+    </div>
+
+<!--    <input type = "button" class = "logbtn" value = "아이디나 비밀번호를 잊어버리셨나요?" onclick = "idPwFind();"/>-->
 
 </form>
 
@@ -44,15 +47,18 @@
             $(this).removeClass("focus");
     });
 
-    var login = function(){
+    var login = function() {
         $('#loginForm')
-            .attr('action','/member/login')
+            .attr('action', '/member/login')
             .submit();
-
-
-    var user_id =  /*[[${member.m_id}]]*/;
     };
-
+    //
+    // var idPwFind = function(){
+    //     $('#loginForm')
+    //         .attr('action', '/member/idPwFind')
+    //         .attr('method','get')
+    //         .submit();
+    // }
 
 </script>
 

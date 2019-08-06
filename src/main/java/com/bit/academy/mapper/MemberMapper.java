@@ -4,6 +4,7 @@ import com.bit.academy.model.MemberVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.lang.reflect.Member;
 import java.util.List;
 
 @Mapper
@@ -46,11 +47,23 @@ public interface MemberMapper {
 
     /**
      * 로그인
+     * @return
      * @param memberVO
      */
-    int login(MemberVO memberVO);
+    MemberVO login(MemberVO memberVO);
 
-
+    /**
+     * 아이디찾기
+     * @return
+     * @param memberVO
+     */
+    MemberVO idFind(MemberVO memberVO);
+    /**
+     * 패스워드찾기
+     * @return
+     * @param memberVO
+     */
+    MemberVO pwFind(MemberVO memberVO);
 
 
 }

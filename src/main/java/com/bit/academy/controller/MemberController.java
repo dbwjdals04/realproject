@@ -6,12 +6,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +19,15 @@ public class MemberController {
 
     @Autowired
     private MemberService memberService;
+
+
+
+    // 메인화면 요청
+
+    @GetMapping("/member/main")
+    public String main(){
+        return "member/main";
+    }
 
     // 회원가입 처리
 
@@ -89,8 +96,74 @@ public class MemberController {
         }
         return "member/list";
     }
-
     //로그인
+
+    /**
+     * login form HTML
+     * @return
+     */
+    @GetMapping("/member/login")
+    public String login(MemberVO memberVO){
+
+        return "member/login";
+    }
+
+    /**
+     * login 수행
+     * @param memberVO
+     * @param model
+     * @param request
+     * @return
+     */
+    @PostMapping("/member/login")
+    public String loginExecute(@ModelAttribute MemberVO memberVO
+            , Model model
+            , HttpServletRequest request){
+
+        memberVO = this.memberService.login(memberVO, request);
+        model.addAttribute("member", memberVO);
+        return "member/main";
+    }
+    @GetMapping("/member/idPwFind")
+    public String idPwFind(){
+        return "member/idPwFind";
+    }
+
+    //아이디찾기
+    @GetMapping("/member/idFind")
+    public String idFind(){
+        return "/member/login";
+    }
+
+    @PostMapping("/member/idFind")
+    public String idFindExecute(@ModelAttribute MemberVO memberVO, Model model, HttpServletRequest request){
+        memberVO = this.memberService.idFind(memberVO,request);
+        model.addAttribute("member",memberVO);
+
+        return "member/login";
+    }
+    //비밀번호찾기
+    @GetMapping("/member/pwFind")
+    public String pwFind(){
+        return "/member/login";
+    }
+    @PostMapping("/member/pwFind")
+    public String pwFindExcute(@ModelAttribute MemberVO memberVO, Model model){
+        memberVO = this.memberService.pwFind(memberVO);
+        model.addAttribute("member",memberVO);
+
+        return "member/login";
+    }
+
+    //로그아웃
+    @PostMapping("member/main")
+    public String logOut(HttpServletRequest request){
+        this.memberService.logOut(request);
+        return "member/main";
+    }
+
+
 }
+
 
 

@@ -31,7 +31,7 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public void deleteBoard(HttpServletRequest request, int qna_no) {
+        public void deleteBoard(HttpServletRequest request, int qna_no) {
 
         /*
         // session을 통해 사용자 인증정보 조회
@@ -72,4 +72,5 @@ public class BoardServiceImpl implements BoardService {
 
         return map;
     }
+
 }
