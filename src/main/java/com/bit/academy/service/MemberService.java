@@ -56,7 +56,7 @@ public interface MemberService {
      */
 
 
-    MemberVO idFind(MemberVO memberVO, HttpServletRequest request);
+    MemberVO idFind(MemberVO memberVO);
 
     /**
      * pwFind

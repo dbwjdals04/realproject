@@ -55,7 +55,7 @@ public interface MemberMapper {
     /**
      * 아이디찾기
      * @return
-     * @param memberVO
+     * @MemberVO
      */
     MemberVO idFind(MemberVO memberVO);
     /**

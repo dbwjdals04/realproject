@@ -18,9 +18,11 @@
     <div class="check_font" id="id_check"></div>
 
 
-    <div class ="txtb"><input type="text" name ="m_id" id="m_id" />
-        <span data-placeholder="ID"></span></div>
+    <div id ="idChk" class ="txtb"><input type="text" name ="m_id" id="m_id" />
+        <span data-placeholder="ID"></span>
+    </div>
     <div id="checkId"></div>
+    <input type = "button" value = "idCheck" onclick="idChk();">
 
     <div class ="txtb"><input type="password" name ="m_password" id="m_password"/>
         <span data-placeholder="Password"></span></div>
@@ -120,6 +122,10 @@
           return true;
       }
 
+      var idChk =function(){
+
+          alert($('#m_id').val());
+      }
 
 
     </script>
