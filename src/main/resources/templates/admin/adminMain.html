@@ -26,17 +26,9 @@
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
 
-        <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
-            <a class="nav-link" href="index.html">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span></a>
-        </li>
-
-
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+            <a class="nav-link collapsed" onclick="test()" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>상품관리</span>
             </a>
@@ -68,6 +60,7 @@
 
 
         <!-- Nav Item - Pages Collapse Menu -->
+        <!--   -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="/admin/memberList" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
                 <i class="fas fa-fw fa-folder"></i>
@@ -158,68 +151,11 @@
             </div>
 
         </div>
-        <section class="page-section" id="services">
-            <select id = "search-select">
-                <option th:value="m_no">회원번호</option>
-                <option th:value="m_name">회원 성명</option>
-                <option th:value="m_phone">전화번호</option>
-            </select>
 
-            <input type="text" id="search" />
+        <div id ="content-inner">
 
-            <input type="button" value="검색" onclick="searchMember();" />
+        </div>
 
-            <table>
-                <thead>
-                <tr>
-
-                    <td>회원번호</td>
-                    <td>성명</td>
-                    <td>아이디</td>
-                </tr>
-                </thead>
-
-
-                <tbody id = "table">
-
-                <tr th:each="member: ${memberList}" onclick="selectMember(this);" th:attr="data-m_no=${member.m_no}">
-                    <td><span th:text="${member.m_no}"></span></td>
-                    <td><span th:text="${member.m_name}"></span></a></td>
-                    <td><span th:text="${member.m_id}"></span></a></td>
-                </tr>
-
-                </tbody>
-            </table>
-            <div id = "memberModal" style="display: none" class = "w3-modal">
-                <div class="w3-modal-content w3-animate-opacity w3-card-4">
-                    <header class="w3-container w3-teal">
-        <span onclick="document.getElementById('memberModal').style.display='none'"
-              class="w3-button w3-display-topright">&times;</span>
-                        <h2>상세 회원 정보</h2>
-                    </header>
-                    <table>
-                        <thead>
-                        <tr>
-
-                            <td>회원번호</td>
-                            <td>성명</td>
-                            <td>아이디</td>
-                            <td>전화번호</td>
-                            <td>주소</td>
-                            <td>등록날짜</td>
-                        </tr>
-                        </thead>
-
-
-                        <tbody id = "modal-table">
-
-
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
@@ -230,61 +166,18 @@
     </div>
 </div>
 </div>
-
+<div id = "test2"></div>
 <script type="text/javascript" th:inline="javascript">
+    /*
+    $(document).ready( function() {
 
-    var selectMember = function(obj){
-        var modal = document.getElementById("memberModal");
-        var m_no = $(obj).data('m_no');
-        if(m_no == undefined){
-            var m_no = obj.data.m_no;
-        }
-
-        console.log(m_no);
-
-        $.ajax({
-            url: '/admin/member/'+m_no,
-            type: 'get',
-            data: {
-                // data1:'abcd', data2:'bdee' // for test
-            },
-            dataType: 'json',
-            success : function(data) {
-                // 성공 시 동작
-                console.log('성공');
-                console.log(data);
-                $("#modal-table").empty();
-                $("#modal-table").append('<td>' + data.m_no + '</td>');
-                $("#modal-table").append('<td>' + data.m_name + '</td>');
-                $("#modal-table").append('<td>' + data.m_id + '</td>');
-                $("#modal-table").append('<td>' + data.m_phone + '</td>');
-                $("#modal-table").append('<td>' + data.m_address + '</td>');
-                $("#modal-table").append('<td>' + data.m_regdate + '</td>');
-
-                modal.style.display = "block";
-
-            },
-            error: function(error) {
-                // 실패 시 동작
-                console.error('실패');
-                console.error(error);
-            },
-            complete: function(response) {
-                // 성공하든 실패하든 항상 할 동작
-                console.log('수행 요청이 완료되었습니다.');
-            }
-        });
-    };
-
-    var searchMember = function(){
-
-        var option = $.trim(($("#search-select option:selected").val()));
-        var keyword = $.trim($("#search").val());
-        console.log(option);
-        location.href = '/admin/member/'+option + '/' + keyword;
-    };
+        $("#content-inner").load("/admin/memberList");
+    });*/
 
 
+    var test = function () {
+        $("#content-inner").load("/admin/product");
+    }
 </script>
 </body>
 </html>

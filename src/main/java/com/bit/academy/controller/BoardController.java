@@ -85,5 +85,13 @@ public class BoardController {
         return "board/list";
     }
 
+    @GetMapping("/test")
+    public String test(){
+        return "admin/test";
+    }
+
+
+
+
 
 }

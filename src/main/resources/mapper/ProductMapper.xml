@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    <mapper namespace="com.bit.academy.mapper.ProductMapper">
+
+    <insert id="insertProduct"
+            parameterType="com.bit.academy.model.ProductVO"
+            useGeneratedKeys="true">
+        <![CDATA[
+            INSERT INTO product (
+                p_name, p_price, p_brand, p_spec, thumb_name, thumb_route, thumb_100, thumb_300, thumb_600, detailimg_name, detailimg_route
+            )
+            VALUES (
+                #{p_name}, #{p_price}, #{p_brand}, #{p_spec}, #{thumb_name}, #{thumb_route}, #{thumb_100}, #{thumb_300}, #{thumb_600}, #{detailimg_name}, #{detailimg_route}
+            )
+        ]]>
+    </insert>
+
+
+</mapper>

@@ -97,5 +97,4 @@ public class MemberController {
         return "admin/adminMain";
     }
 
-
 }
