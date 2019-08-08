@@ -1,0 +1,43 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+</head>
+<body>
+<h1>Product Buttons</h1>
+
+<input type = "button" value = "Modern" id = "modernAll"/>
+<input type = "button" value = "Modern" id = "antiqueAll"/>
+<input type = "button" value = "Modern" id = "warmAll"/>
+
+
+<script type="text/javascript"  th:inline="javascript">
+
+    var category_no = [{ fieldname: 1 }, { fieldname: 2 },{ fieldname: 3 }];
+
+    $('#modernAll').click(function(){
+
+        $.ajax({
+            url : '/member/modernAll',
+            type : 'get',
+            data : category_no,
+            dataType : 'json',
+
+            success : function(data){
+               console.log.toString(data)
+                alert("데이터 가져오기 성공")},
+            error : function(error){
+                alert("잘못 클릭하셨습니다");
+            }
+        })
+    });
+
+</script>
+
+
+
+</body>
+</html>

@@ -55,12 +55,12 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public Map<String,Object> selectBoardList(BoardPaging boardPaging) {
 
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
 
         /**
          * 처음 진입한 경우 currentPage 등 초기화 해줍니다.
          */
-        if(boardPaging.getCurrentPage()==0){
+        if (boardPaging.getCurrentPage() == 0) {
             boardPaging.setCurrentPage(1); // 1page 부터 조회
             boardPaging.setArticleCount(20); // 페이지당 게시물 갯수
         }

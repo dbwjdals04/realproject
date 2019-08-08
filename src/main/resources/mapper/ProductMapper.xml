@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bit.academy.mapper.ProductMapper">
+
+
+    <!-- ModernAll Research-->
+
+    <select id = "modernAll" parameterType="list" resultType="com.bit.academy.model.ProductVO">
+        SELECT p.*
+        FROM product AS p
+        JOIN category_product AS cp
+        ON p.p_id = cp.p_id
+        JOIN category AS c
+        ON cp.category_no = c.category_no
+        WHERE c.category_no IN (1,2,3)
+        <foreach item="category_no" index="index" collection="list"
+                 open="(" separator="," close=")">
+            #{category_no}
+        </foreach>
+    </select>
+
+    <!-- ModernAll Research-->
+
+    <select id = "AntiqueAll">
+        SELECT p.*
+        FROM product AS p
+        JOIN category_product AS cp
+        ON p.p_id = cp.p_id
+        JOIN category AS c
+        ON cp.category_no = c.category_no
+        WHERE c.category_no=4 || 5 || 6;
+    </select>
+
+    <!-- ModernAll Research-->
+
+    <select id = "WarmAll">
+        SELECT p.*
+        FROM product AS p
+        JOIN category_product AS cp
+        ON p.p_id = cp.p_id
+        JOIN category AS c
+        ON cp.category_no = category.category_no
+        WHERE c.category_no=7 || 8 || 9;
+    </select>
